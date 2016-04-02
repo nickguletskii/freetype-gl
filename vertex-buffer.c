@@ -61,7 +61,7 @@ vertex_buffer_new( const char *format )
         return NULL;
     }
 
-    self->format = strdup( format );
+    self->format = ftgl_strdup( format );
 
     for( i=0; i<MAX_VERTEX_ATTRIBUTE; ++i )
     {
@@ -78,11 +78,11 @@ vertex_buffer_new( const char *format )
 
         if (end == NULL)
         {
-            desc = strdup( start );
+            desc = ftgl_strdup( start );
         }
         else
         {
-            desc = strndup( start, end-start );
+            desc = ftgl_strndup( start, end-start );
         }
         attribute = vertex_attribute_parse( desc );
         start = end+1;

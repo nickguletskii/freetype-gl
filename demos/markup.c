@@ -100,7 +100,7 @@ match_description( char * description )
         }
         else
         {
-            filename = strdup( (char *)(value.u.s) );
+            filename = ftgl_strdup( (char *)(value.u.s) );
         }
     }
     FcPatternDestroy( match );

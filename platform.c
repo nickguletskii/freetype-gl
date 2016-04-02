@@ -44,24 +44,31 @@ double round (double v)
 	return (v > 0.0) ? floor(v + 0.5) : ceil(v - 0.5);
 }
 #endif // _MSC_VER < 1800
-
-// strndup() is not available on Windows
-char *strndup( const char *s1, size_t n)
-{
-	char *copy= (char*)malloc( n+1 );
-	memcpy( copy, s1, n );
-	copy[n] = 0;
-	return copy;
-};
 #endif
-
-
-// strndup() was only added in OSX lion
-#if defined(__APPLE__)
-char *strndup( const char *s1, size_t n)
+size_t ftgl_strnlen(const char *str, size_t n)
 {
-    char *copy = calloc( n+1, sizeof(char) );
-    memcpy( copy, s1, n );
-    return copy;
-};
-#endif
+    size_t i = 0;
+    for(; i < n && str[i]; i++);
+    return i;
+}
+char* ftgl_strndup(const char *str, size_t n) {
+	size_t len = ftgl_strnlen(str, n);
+	char *new_str = (char*) malloc(len + 1);
+
+	if (new_str == NULL) {
+		return NULL;
+	}
+
+	new_str[len] = '\0';
+	return (char*) memcpy(new_str, str, len);
+}
+char* ftgl_strdup(const char *str) {
+	size_t len = strlen(str) + 1;
+	void *new_str = malloc(len);
+
+	if (new_str == NULL){
+		return NULL;
+	}
+
+	return (char*) memcpy(new_str, str, len);
+}

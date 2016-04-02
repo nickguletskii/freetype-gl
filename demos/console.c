@@ -101,7 +101,7 @@ console_new( void )
         return self;
     }
     self->lines = vector_new( sizeof(char *) );
-    self->prompt = strdup( ">>> " );
+    self->prompt = ftgl_strdup( ">>> " );
     self->cursor = 0;
     self->buffer = vertex_buffer_new( "vertex:3f,tex_coord:2f,color:4f" );
     self->input[0] = '\0';
@@ -390,7 +390,7 @@ console_print( console_t *self, char *text )
     // Make sure there is at least one line
     if( self->lines->size == 0 )
     {
-        char *line = strdup( "" );
+        char *line = ftgl_strdup( "" );
         vector_push_back( self->lines, &line );
     }
 
@@ -400,7 +400,7 @@ console_print( console_t *self, char *text )
     {
         if( last_line[strlen( last_line ) - 1] == '\n' )
         {
-            char *line = strdup( "" );
+            char *line = ftgl_strdup( "" );
             vector_push_back( self->lines, &line );
         }
     }
