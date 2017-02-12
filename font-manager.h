@@ -42,6 +42,7 @@ extern "C" {
 #include "markup.h"
 #include "texture-font.h"
 #include "texture-atlas.h"
+#include "platform.h"
 
 #ifdef __cplusplus
 namespace ftgl {
